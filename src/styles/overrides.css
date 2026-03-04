@@ -1,0 +1,865 @@
+/* === PILARES — Brand tokens (azul) === */
+:root {
+  --brand-50: #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-200: #bfdbfe;
+  --brand-300: #93c5fd;
+  --brand-400: #60a5fa;
+  --brand-500: #3b82f6; /* primária */
+  --brand-600: #2563eb; /* primária (hover) */
+  --brand-700: #1d4ed8;
+  --brand-800: #1e40af;
+  --brand-900: #1e3a8a;
+
+  --accent-cyan: #0ea5e9; /* toques ciano */
+  --txt-on-dark: #ffffff;
+}
+
+:root {
+  --brand-gradient: linear-gradient(135deg, var(--brand-600), var(--brand-800));
+}
+
+/* 1) não deixar a página ter scroll horizontal */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 2) esconder COMPLETAMENTE o menu mobile no desktop */
+@media (min-width: 992px) {
+  .mobile-header,
+  .mobile-sidebar,
+  .mobile-sidebar-overlay {
+    display: none !important;
+  }
+}
+
+/* 3) ajustar o sidebar mobile para não "quebrar" o layout */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  /* IMPORTANTE: fixar na DIREITA */
+  right: 0;
+  left: auto !important;
+  width: 80%;
+  max-width: 420px;
+  border-radius: 16px 0 0 16px;
+  height: 100vh;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  background: #021334;
+  overflow-y: auto;
+  transform: translateX(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 4) quando o JS do template ativar o menu (classe mobile-menu-active) */
+.mobile-sidebar.mobile-menu-active {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 5) overlay por trás do menu */
+.mobile-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* quando o menu está ativo, mostra o overlay */
+.mobile-sidebar.mobile-menu-active + .mobile-sidebar-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* BOTÃO "Fale com a gente" na SIDEBAR MOBILE */
+.btn-contact-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 26px;
+  border-radius: 999px;
+
+  background: var(--brand-gradient) !important;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 18px rgba(0, 21, 255, 0.4);
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease,
+    opacity 0.16s ease;
+}
+
+/* hover no mobile também (vale pra telas grandes se o menu abrir) */
+.mobile-sidebar .mobile-button .header-btn23:hover {
+  background: #f3ecff;
+  color: #4b2ac7;
+}
+
+/* estilo padrão do select de idioma */
+.lang-select {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  padding: 6px 12px;
+  outline: none;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.lang-select option {
+  color: #000;
+}
+
+/* no header desktop */
+/* BOTÃO "Fale com a gente" no HEADER DESKTOP */
+.header-area6 .header2-buttons .btn-contact-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 5px 12px;
+  border-radius: 999px;
+
+  background: var(--brand-gradient);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 18px rgba(17, 0, 255, 0.4);
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease,
+    opacity 0.16s ease;
+}
+
+/* hover no desktop */
+.header-area6 .header2-buttons .header-btn23:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  background: #f3ecff;
+  color: #ffffffff;
+}
+
+/* “brilho” suave passando no botão */
+.btn-contact-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 40%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.4s ease-out;
+}
+
+/* conteúdo do botão (texto + ícone) acima do brilho */
+.btn-contact-cta__label,
+.btn-contact-cta__icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* ícone redondo */
+.btn-contact-cta__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-contact-cta__icon i {
+  font-size: 13px;
+}
+
+/* HOVER – desktop */
+.btn-contact-cta:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(143, 0, 255, 0.55);
+}
+
+.btn-contact-cta:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(37, 99, 235, 0.45) !important;
+}
+
+.btn-contact-cta:hover::before {
+  transform: translateX(10%);
+}
+
+/* HEADER DESKTOP – garante alinhamento bonito no header */
+.header-area6 .header2-buttons .btn-contact-cta {
+  margin-left: 8px;
+}
+
+/* SIDEBAR MOBILE – botão ocupa a largura inteira */
+.mobile-sidebar .mobile-button .btn-contact-cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* em telas muito pequenas, deixa o botão um pouco menor */
+@media (max-width: 380px) {
+  .btn-contact-cta {
+    padding: 9px 18px;
+    font-size: 13px;
+  }
+}
+
+/* topo mobile */
+.mobile-header .lang-select--mobile {
+  margin: 0 8px;
+  font-size: 16px;
+  padding: 3px 20px 3px 8px;
+} /* HEADER MOBILE ROXO */
+.mobile-header-6 {
+  background: var(--brand-gradient);
+}
+
+/* ícone de menu e textos em branco */
+.mobile-header-6 .mobile-header-elements,
+.mobile-header-6 .mobile-header-elements a,
+.mobile-header-6 .mobile-nav-icon i {
+  color: #ffffff;
+}
+
+/* dentro do sidebar */
+/* SELECT DE IDIOMA DENTRO DA SIDEBAR MOBILE */
+
+/* SELECT DE IDIOMA DENTRO DA SIDEBAR MOBILE – MAIOR E MAIS LARGO */
+.mobile-sidebar .lang-select--sidebar {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+
+  margin: 18px 0 24px;
+
+  padding: 12px 18px; /* AUMENTA ALTURA DO CAMPO */
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: #6534f4;
+
+  font-size: 16px; /* TEXTO MAIOR */
+  font-weight: 500;
+  line-height: 1.4;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: linear-gradient(
+    135deg,
+    rgba(101, 52, 244, 0.08),
+    rgba(143, 0, 255, 0.12)
+  );
+  background-clip: padding-box;
+}
+
+.lang-select {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  font-size: 15px; /* antes estava 16, deixa como preferir */
+  padding: 8px 14px;
+  outline: none;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* OPÇÕES DENTRO DO SELECT – DEIXAR LISTA MAIS CONFORTÁVEL */
+.mobile-sidebar .lang-select--sidebar option {
+  font-size: 16px;
+  padding: 6px 10px;
+}
+
+/* opcional: cursor e hover mais bonitinhos */
+.mobile-sidebar .lang-select--sidebar:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.mobile-sidebar .lang-select--sidebar:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6),
+    0 0 0 4px rgba(101, 52, 244, 0.7);
+}
+
+/* container do topo mobile */
+.mobile-header .mobile-header-elements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo à esquerda, bloco (select + menu) à direita */
+}
+
+/* bloco da direita (select + ícone) */
+.mobile-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaço entre o select e o ícone */
+}
+
+/* já existia, só garantindo que o select do topo fique ok */
+.mobile-header .lang-select--mobile {
+  margin: 0 4px;
+  font-size: 14px;
+  padding: 4px 14px 4px 8px;
+}
+
+.multi-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.multi-input-form .input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.multi-input-form input,
+.multi-input-form textarea {
+  flex: 1 1 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 14px;
+}
+
+.multi-input-form input::placeholder,
+.multi-input-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .multi-input-form .input-row input {
+    flex: 1 1 calc(50% - 5px);
+  }
+}
+
+.multi-input-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* espaçamento entre colunas do footer em telas menores */
+.footer6 .row > [class*="col-"] {
+  margin-bottom: 20px;
+}
+
+/* alinha melhor o texto de copyright no mobile */
+@media (max-width: 767px) {
+  .footer6 .coppyright {
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+/* Reativar a animação do ponto girando na área de clientes também no mobile */
+.brands-area6 .apps-images .image1 .dot {
+  display: block !important;
+}
+
+/* Animação menor para o pontinho girar dentro da imagem em telas pequenas */
+@keyframes orbit-small {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(120px);
+    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.1),
+      0 0 30px 30px rgba(255, 255, 255, 0.06),
+      0 0 40px 40px rgba(255, 255, 255, 0.03);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(120px);
+    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.1),
+      0 0 30px 30px rgba(255, 255, 255, 0.06),
+      0 0 40px 40px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Em telas até 991px (tablet + mobile), reativa o pontinho e usa a animação menor */
+@media (max-width: 991px) {
+  .brands-area6 .apps-images .image1 .dot {
+    display: block !important; /* reativa o ponto */
+    right: 50%; /* centraliza melhor no círculo */
+    margin-right: 0;
+    animation: orbit-small 6s linear infinite;
+  }
+}
+
+/* MODAL DE SUCESSO DO FORMULÁRIO */
+.form-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 8, 36, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.form-modal {
+  position: relative;
+  background: #050b2a;
+  border-radius: 20px;
+  padding: 28px 24px 22px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(143, 0, 255, 0.7);
+  text-align: center;
+  animation: form-scale 0.2s ease-out;
+}
+
+.form-modal h3 {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.form-modal p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: #c9d2ff;
+}
+
+.form-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ÍCONE / CHECKMARK ANIMADO */
+.form-modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  width: 72px;
+  height: 72px;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke: #4ade80;
+  fill: none;
+  animation: form-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke-width: 3;
+  stroke: #4ade80;
+  fill: none;
+  animation: form-stroke 0.4s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+@keyframes form-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes form-scale {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botão desabilitado enquanto envia */
+.theme-btn9[disabled] {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* fundo geral da página de contato */
+.contact-page {
+  background: radial-gradient(
+    circle at top,
+    #1d0b5c 0,
+    #020517 55%,
+    #020313 100%
+  );
+  color: #ffffff;
+}
+
+/* HERO da página de contato com a mesma pegada do hero principal */
+.contact-hero {
+  position: relative;
+  color: #ffffff;
+  background-image: linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.94),
+      rgba(30, 64, 175, 0.98)
+    ),
+    uurl("/img/bg/hero6-bg.png") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contact-hero .heading6-w h2 {
+  max-width: 640px;
+}
+
+/* deixa o "Fale com o time Pilares" mais destacado */
+.contact-hero .span2 {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.12);
+  color: #fde68a;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* ========= PÁGINA DE CONTATO ========= */
+
+/* fundo geral da página de contato */
+.contact-page {
+  background: radial-gradient(
+    circle at top,
+    #1d0b5c 0,
+    #020517 55%,
+    #020313 100%
+  );
+  color: #ffffff;
+}
+
+/* hero roxo com estilo parecido com outras seções */
+.contact-hero {
+  background: linear-gradient(135deg, #6534f4, #8f00ff);
+  color: #ffffff;
+}
+
+.contact-hero .heading6-w h2 {
+  max-width: 640px;
+}
+
+/* bloco principal da página */
+.contact-content {
+  background: transparent;
+}
+
+/* cards genéricos da página de contato */
+.contact-card {
+  background: rgba(5, 11, 42, 0.96);
+  border-radius: 18px;
+  padding: 22px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(37, 99, 235, 0.5) !important; /* azul 600 */
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+.contact-card h3,
+.contact-card h4 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  color: #c9d2ff;
+  font-size: 14px;
+}
+
+/* lista de módulos */
+.contact-modules-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-modules-list li {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(9, 16, 60, 0.9);
+}
+
+.contact-modules-list li strong {
+  display: block;
+  font-size: 14px;
+  color: #f5f3ff;
+}
+
+.contact-modules-list li span {
+  display: block;
+  font-size: 13px;
+  color: #aeb8ff;
+}
+
+/* botões de contato rápido */
+.contact-quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.contact-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.contact-btn__icon i {
+  font-size: 14px;
+}
+
+/* WhatsApp verde */
+.contact-btn--whatsapp {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* Telegram azul */
+.contact-btn--telegram {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}
+
+
+.contact-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+  opacity: 0.95;
+}
+
+/* card do formulário um pouco maior */
+.contact-card--form {
+  padding: 26px 22px 24px;
+}
+
+.contact-card--form h3 {
+  margin-bottom: 8px;
+}
+
+/* responsividade básica */
+@media (max-width: 991px) {
+  .contact-page {
+    background: radial-gradient(
+      circle at top,
+      #1d0b5c 0,
+      #020517 55%,
+      #020313 100%
+    );
+  }
+
+  .contact-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Botão "voltar" na página de contato */
+.contact-hero-actions {
+  margin-top: 20px;
+}
+
+.contact-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+
+  background: rgba(3, 8, 36, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.contact-back-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.contact-back-btn__icon i {
+  font-size: 12px;
+}
+
+.contact-back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+  background: rgba(3, 8, 36, 0.7);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== AJUSTES PARA PÁGINA DE CONTATO ===== */
+
+/* Deixar o hero mais discreto: menos altura, sem gradient forte, sem imagem grande */
+.contact-page .contact-hero {
+  padding-top: 32px;
+  padding-bottom: 16px;
+
+  background: transparent; /* tira o destaque visual */
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Título e texto menores e mais "suaves" */
+.contact-page .contact-hero .heading6-w h2 {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.contact-page .contact-hero .heading6-w p {
+  font-size: 14px;
+  max-width: 520px;
+  opacity: 0.85;
+}
+
+/* Se tiver imagens de hero na contact-page, escondemos pra tirar o peso visual */
+.contact-page .contact-hero .images-all,
+.contact-page .contact-hero .contact-hero-images {
+  display: none;
+}
+
+.btn-contact-cta {
+  background: var(--brand-gradient) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 18px rgba(37, 99, 235, 0.35) !important; /* azul 600 */
+}
+
+/* FAQ (Sobre) - manter legibilidade dos textos */
+.faq6 .accordion .accordion-item button {
+  color: #111827 !important;
+}
+
+.faq6 .accordion .accordion-item .accordion-body {
+  color: #111827 !important;
+}
+
+.faq6 .accordion .accordion-item.active button,
+.faq6 .accordion .accordion-item.active .accordion-body {
+  color: #ffffff !important;
+}
+
+/* Reaproveita o fundo da seção brands na seção de benefícios */
+.editing6 {
+  position: relative;
+  background: transparent !important;
+  overflow: hidden;
+}
+
+.editing6::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("/img/bg/brands6-bg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.editing6 > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.editing6 .benefits-heading-main h2,
+.editing6 .benefits-heading-main > p {
+  color: #ffffff !important;
+}
