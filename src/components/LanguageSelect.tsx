@@ -1,27 +1,26 @@
-// src/components/LanguageSelect.tsx
 import React from "react";
 import { useI18n } from "../i18n/I18nProvider";
-import type { Lang } from "../i18n/translations";
+import type { Locale } from "../i18n/translations";
 
 interface LanguageSelectProps {
   className?: string;
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ className }) => {
-  const { lang, setLang } = useI18n();
+  const { locale, setLocale } = useI18n();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setLang(event.target.value as Lang);
+    setLocale(event.target.value as Locale);
   };
 
   return (
     <select
       className={className ?? "lang-select"}
-      value={lang}
+      value={locale}
       onChange={handleChange}
     >
-      <option value="pt-BR">🇧🇷 PT</option>
-      <option value="en-US">🇬🇧 EN</option>
+      <option value="pt">🇧🇷 PT</option>
+      <option value="en">🇬🇧 EN</option>
       <option value="es">🇪🇸 ES</option>
     </select>
   );
