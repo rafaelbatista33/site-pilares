@@ -7,57 +7,58 @@ export const translations: Record<Locale, any> = {
     header: {
       home: "Início",
       benefits: "Benefícios",
-      features: "Módulos",
+      features: "Soluções",
       partners: "Clientes",
       about: "Sobre",
-      contactCta: "Fale com a gente",
+      contactCta: "Fale com um especialista",
     },
 
     hero: {
-      badge: "Plataforma SaaS Modular",
-      title: "Gestão Inteligente de Ativos e Manutenção",
+      badge: "Especialistas em patrimônio público",
+      title: "Controle Total do Patrimônio Público",
       descriptionRest:
-        "Pilares centraliza operações, traz previsibilidade e decisões baseadas em dados. Modernize sua gestão com tecnologia Indústria 4.0.",
+        "A PILARES ajuda seu órgão a controlar bens patrimoniais, executar inventários, rastrear movimentações e gerar relatórios para prestação de contas com mais segurança e organização.",
       primaryCta: "Agendar Diagnóstico Gratuito",
       watchIn2Min: "Ver em 2 minutos",
-      trustedBy: "Confiada por empresas em vários setores",
+      trustedBy:
+        "Ideal para prefeituras, câmaras, autarquias, escolas e hospitais",
     },
 
     counters: {
-      heading: "Resultados em operações reais",
-      kpi1: { value: "44.100+", label: "Itens e ativos gerenciados" },
-      kpi2: { value: "175.000+", label: "Registros e evidências" },
-      kpi3: { value: "5.000+", label: "Locais monitorados" },
-      kpi4: { value: "91%", label: "OS dentro do SLA" },
+      heading: "Mais controle para a rotina patrimonial",
+      kpi1: { value: "44.100+", label: "Bens patrimoniais controlados" },
+      kpi2: { value: "175.000+", label: "Movimentações e registros" },
+      kpi3: { value: "5.000+", label: "Unidades e setores atendidos" },
+      kpi4: { value: "91%", label: "Rotinas com mais rastreabilidade" },
     },
 
     benefits: {
-      title: "O Que Entregamos de Valor Real",
+      title: "O Que a PILARES Entrega",
       subtitle:
-        "Resultados mensuráveis para instituições públicas com impacto operacional, financeiro e patrimonial.",
+        "Mais controle, mais transparência e menos retrabalho na gestão do patrimônio público.",
       item1: {
-        title: "Economia no Gasto Público",
-        text: "Reduza compras desnecessárias e manutenções emergenciais com planejamento técnico de ativos e patrimônio.",
+        title: "Controle dos Bens em Um Só Lugar",
+        text: "Cadastre, acompanhe e organize os bens patrimoniais com mais clareza e segurança.",
       },
       item2: {
-        title: "Controle e Transparência",
-        text: "Rastreabilidade ponta a ponta com evidências, histórico e trilhas de auditoria para órgãos de controle.",
+        title: "Rastreabilidade Completa",
+        text: "Saiba onde cada bem está, por onde passou e quem foi responsável por cada movimentação.",
       },
       item3: {
-        title: "Decisão Rápida com Dados",
-        text: "Dashboards e relatórios em tempo real para priorizar ações, reduzir riscos e melhorar a prestação de contas.",
+        title: "Inventário Mais Rápido",
+        text: "Ganhe agilidade no inventário e reduza falhas nas informações patrimoniais.",
       },
       item4: {
-        title: "Conformidade e Governança",
-        text: "Padronize processos de manutenção, cumpra normativas e fortaleça a governança operacional da instituição.",
+        title: "Relatórios para Prestação de Contas",
+        text: "Tenha relatórios organizados para auditorias, fiscalização e exigências dos órgãos de controle.",
       },
       item5: {
-        title: "Gestão de Patrimônio Público",
-        text: "Controle ciclo de vida, localização, estado e criticidade de bens patrimoniais em uma única plataforma.",
+        title: "Mais Transparência e Conformidade",
+        text: "Fortaleça o controle interno e tenha informações confiáveis para tomada de decisão.",
       },
       item6: {
-        title: "Planejamento da Manutenção",
-        text: "Estruture planos preventivos e corretivos com SLA, responsáveis e prioridades para aumentar disponibilidade dos ativos.",
+        title: "Apoio à Manutenção Predial",
+        text: "Organize demandas e acompanhe ações de manutenção para preservar a estrutura e os ativos públicos.",
       },
       extra01: {
         number: "01",
@@ -82,64 +83,64 @@ export const translations: Record<Locale, any> = {
     },
 
     features: {
-      heading: "Módulos Completos para Sua Gestão",
+      heading: "Soluções para Organizar o Patrimônio Público",
       subheading:
-        "Ative apenas o que precisa — a plataforma é modular e cresce com você.",
+        "Controle patrimonial, inventário, rastreabilidade e relatórios em uma plataforma simples de usar.",
       monitoring: {
-        badge: "Monitoramento em tempo real",
-        title: "Veja o estado dos seus ativos em um só painel",
-        text: "Acompanhe instalações e equipamentos em tempo real. Receba alertas e tome decisões rápidas para evitar impactos na operação.",
+        badge: "Controle patrimonial",
+        title: "Veja onde está cada bem",
+        text: "Acompanhe localização, responsável, histórico e situação atual dos bens patrimoniais.",
       },
       scheduling: {
-        badge: "Agendamento inteligente",
-        title: "Planeje manutenções preventivas com antecedência",
-        text: "Crie planos preventivos e agende tarefas com recorrência. Evite falhas críticas e mantenha tudo sob controle.",
+        badge: "Inventário",
+        title: "Execute inventários com mais organização",
+        text: "Atualize dados patrimoniais com mais rapidez e tenha uma base mais confiável.",
       },
       history: {
-        badge: "Histórico detalhado",
-        title: "Tenha o histórico completo de cada equipamento",
-        text: "Consulte histórico e evidências para análises e decisões estratégicas sobre investimentos, substituições e prioridades.",
+        badge: "Relatórios",
+        title: "Gere informações para auditoria e prestação de contas",
+        text: "Transforme registros patrimoniais em relatórios claros para controle, gestão e fiscalização.",
       },
     },
 
     brands: {
-      badge: "Clientes que confiam",
-      title: "Junte-se a quem já profissionalizou a gestão",
-      text: "Parcerias reais validam a plataforma. Evoluímos continuamente ouvindo as necessidades do mercado.",
-      cta: "Quero fazer parte",
+      badge: "Quem busca mais controle escolhe organização",
+      title: "Modernize a gestão do patrimônio do seu órgão",
+      text: "A PILARES ajuda instituições públicas a organizar bens, melhorar o inventário e ganhar mais segurança na prestação de contas.",
+      cta: "Quero conhecer a plataforma",
     },
 
     about: {
-      badge: "Sobre a PilaresTech GovTech",
+      badge: "Sobre a PILARES",
       title:
-        "GovTech especializada em gestão da manutenção, controle de ativos e patrimônio para instituições públicas.",
+        "Especialistas em patrimônio público, inventário, rastreabilidade e relatórios.",
       who: {
-        question: "Quem É A PilaresTech GovTech?",
+        question: "Quem é a PILARES?",
         part1:
-          "A PilaresTech GovTech é uma plataforma criada para modernizar a gestão pública com tecnologia aplicada à manutenção, ativos e patrimônio.",
+          "A PILARES foi criada para ajudar órgãos públicos a organizar e controlar melhor seus bens patrimoniais.",
         part2:
-          "Atuamos com foco em eficiência operacional, transparência e conformidade, entregando dados confiáveis para decisão e prestação de contas.",
+          "Nosso foco é simplificar inventários, rastrear movimentações e gerar informações confiáveis para gestão, auditoria e prestação de contas.",
       },
       vision: {
         question: "Visão",
         answer:
-          "Ser a GovTech de referência nacional em manutenção e gestão patrimonial no setor público.",
+          "Ser referência em tecnologia para controle patrimonial no setor público.",
       },
       mission: {
         question: "Missão",
         answer:
-          "Impulsionar a excelência da gestão pública com tecnologia simples, inteligente e escalável, conectando processos, equipes e ativos.",
+          "Facilitar a gestão patrimonial pública com uma plataforma simples, prática e confiável.",
       },
       values: {
         question: "Valores",
         answer:
-          "Simplicidade, Transparência, Inovação com propósito público, Confiabilidade dos dados e Compromisso com resultado para a sociedade.",
+          "Clareza, confiança, simplicidade, transparência e compromisso com resultado.",
       },
     },
 
     cta: {
-      heading: "Pronto para Transformar sua Gestão?",
-      text: "Agende um diagnóstico gratuito e receba um plano de implantação com escopo, cronograma e metas claras.",
+      heading: "Pronto para Organizar o Patrimônio do Seu Órgão?",
+      text: "Agende um diagnóstico gratuito e veja como melhorar o controle patrimonial, o inventário e a prestação de contas com mais segurança.",
       button: "Agendar Diagnóstico Gratuito",
     },
 
@@ -467,7 +468,8 @@ export const translations: Record<Locale, any> = {
       },
       values: {
         question: "Valores",
-        answer: "Simplicidad, Empatía, Confianza, Innovación e Impacto Público.",
+        answer:
+          "Simplicidad, Empatía, Confianza, Innovación e Impacto Público.",
       },
     },
     cta: {
