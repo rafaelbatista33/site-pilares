@@ -25,11 +25,11 @@ export const translations: Record<Locale, any> = {
     },
 
     counters: {
-      heading: "Mais controle para a rotina patrimonial",
-      kpi1: { value: "44.100+", label: "Bens patrimoniais controlados" },
-      kpi2: { value: "175.000+", label: "Movimentações e registros" },
-      kpi3: { value: "5.000+", label: "Unidades e setores atendidos" },
-      kpi4: { value: "91%", label: "Rotinas com mais rastreabilidade" },
+      heading: "Resultados em operações reais",
+      kpi1: { value: "8.000+", label: "Itens e ativos gerenciados" },
+      kpi2: { value: "1.500+", label: "Registros e evidências" },
+      kpi3: { value: "700+", label: "Locais monitorados" },
+      kpi4: { value: "91%", label: "OS dentro do SLA" },
     },
 
     benefits: {
@@ -203,11 +203,12 @@ export const translations: Record<Locale, any> = {
     },
     counters: {
       heading: "Real-world results",
-      kpi1: { value: "44,100+", label: "Assets managed" },
-      kpi2: { value: "175,000+", label: "Records & evidence" },
-      kpi3: { value: "5,000+", label: "Locations monitored" },
+      kpi1: { value: "8,000+", label: "Assets managed" },
+      kpi2: { value: "1,500+", label: "Records & evidence" },
+      kpi3: { value: "700+", label: "Locations monitored" },
       kpi4: { value: "91%", label: "Work orders within SLA" },
     },
+
     benefits: {
       title: "Real Value We Deliver",
       subtitle:
@@ -368,11 +369,12 @@ export const translations: Record<Locale, any> = {
     },
     counters: {
       heading: "Resultados reales",
-      kpi1: { value: "44.100+", label: "Activos gestionados" },
-      kpi2: { value: "175.000+", label: "Registros y evidencias" },
-      kpi3: { value: "5.000+", label: "Ubicaciones monitoreadas" },
+      kpi1: { value: "8.000+", label: "Activos gestionados" },
+      kpi2: { value: "1.500+", label: "Registros y evidencias" },
+      kpi3: { value: "700+", label: "Ubicaciones monitoreadas" },
       kpi4: { value: "91%", label: "OT dentro del SLA" },
     },
+
     benefits: {
       title: "Valor Real que Entregamos",
       subtitle:
