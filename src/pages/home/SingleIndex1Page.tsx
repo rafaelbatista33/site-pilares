@@ -42,7 +42,7 @@ export const SingleIndex1Page: React.FC = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert(
-        "Não foi possível enviar. Verifique sua conexão e tente novamente."
+        "Não foi possível enviar. Verifique sua conexão e tente novamente.",
       );
     } finally {
       setIsSubmitting(false);
@@ -60,11 +60,11 @@ export const SingleIndex1Page: React.FC = () => {
     if (typeof document === "undefined") return;
 
     const sidebar = document.querySelector(
-      ".mobile-sidebar"
+      ".mobile-sidebar",
     ) as HTMLElement | null;
 
     const overlay = document.querySelector(
-      ".mobile-sidebar-overlay"
+      ".mobile-sidebar-overlay",
     ) as HTMLElement | null;
 
     sidebar?.classList.remove("mobile-menu-active");
@@ -340,7 +340,9 @@ export const SingleIndex1Page: React.FC = () => {
             <div className="row">
               <div className="col-lg-12 m-auto text-center">
                 <div className="heading6">
-                  <h3 className="text-anime-style-3">{t("counters.heading")}</h3>
+                  <h3 className="text-anime-style-3">
+                    {t("counters.heading")}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -353,7 +355,7 @@ export const SingleIndex1Page: React.FC = () => {
                   data-aos-duration="700"
                 >
                   <h2>
-                    <span className="counter">44.100</span>+
+                    <span className="counter">8.000</span>+
                   </h2>
                   <p>{t("counters.kpi1.label")}</p>
                 </div>
@@ -366,7 +368,7 @@ export const SingleIndex1Page: React.FC = () => {
                   data-aos-duration="900"
                 >
                   <h2>
-                    <span className="counter">175.000</span>+
+                    <span className="counter">1.500</span>+
                   </h2>
                   <p>{t("counters.kpi2.label")}</p>
                 </div>
@@ -379,7 +381,7 @@ export const SingleIndex1Page: React.FC = () => {
                   data-aos-duration="1100"
                 >
                   <h2>
-                    <span className="counter">5.000</span>+
+                    <span className="counter">700</span>+
                   </h2>
                   <p>{t("counters.kpi3.label")}</p>
                 </div>
@@ -546,7 +548,9 @@ export const SingleIndex1Page: React.FC = () => {
                   <span className="title">
                     <img src="/img/icons/span-image6.png" alt="" />
                   </span>
-                  <h2 className="text-anime-style-3">{t("features.heading")}</h2>
+                  <h2 className="text-anime-style-3">
+                    {t("features.heading")}
+                  </h2>
                 </div>
               </div>
             </div>
