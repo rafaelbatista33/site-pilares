@@ -16,6 +16,16 @@ type AutoReply = {
 };
 
 const CHAT_SESSION_KEY = "pilares_chat_session";
+const VISITOR_STORAGE_KEY = "pilares_chat_visitor";
+const introMessages: ChatMessage[] = [
+  {
+    id: "intro-1",
+    session_id: "intro",
+    sender_type: "bot",
+    body: "Olá! Eu sou o assistente da Pilares. Para começar, qual é o seu nome?",
+    created_at: new Date(0).toISOString(),
+  },
+];
 
 const getStoredChatSession = () => {
   const rawSession = localStorage.getItem(CHAT_SESSION_KEY);
@@ -33,6 +43,22 @@ const saveStoredChatSession = (session: { id: string; token: string }) => {
   localStorage.setItem(CHAT_SESSION_KEY, JSON.stringify(session));
 };
 
+const getStoredVisitor = () => {
+  const rawVisitor = localStorage.getItem(VISITOR_STORAGE_KEY);
+  if (!rawVisitor) return { name: "", email: "" };
+
+  try {
+    return JSON.parse(rawVisitor) as { name: string; email: string };
+  } catch {
+    localStorage.removeItem(VISITOR_STORAGE_KEY);
+    return { name: "", email: "" };
+  }
+};
+
+const saveStoredVisitor = (visitor: { name: string; email: string }) => {
+  localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitor));
+};
+
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [sessionId, setSessionId] = useState("");
@@ -42,8 +68,30 @@ const ChatWidget = () => {
   const [message, setMessage] = useState("");
   const [visitor, setVisitor] = useState({ name: "", email: "" });
   const [isSending, setIsSending] = useState(false);
-
-  const hasStarted = Boolean(sessionId);
+  const [hasIntroduced, setHasIntroduced] = useState(false);
+  const chatStep = !visitor.name ? "name" : !visitor.email ? "email" : "ready";
+  const onboardingMessages: ChatMessage[] =
+    chatStep === "ready" && !sessionId
+      ? [
+          {
+            id: "intro-ready",
+            session_id: "intro",
+            sender_type: "bot",
+            body: `Olá, ${visitor.name}. Pode enviar sua dúvida sobre a Pilares.`,
+            created_at: new Date(0).toISOString(),
+          },
+        ]
+      : introMessages;
+  const visibleMessages =
+    sessionId || hasIntroduced
+      ? [...onboardingMessages, ...messages]
+      : onboardingMessages;
+  const inputPlaceholder =
+    chatStep === "name"
+      ? "Digite seu nome"
+      : chatStep === "email"
+        ? "Digite seu e-mail"
+        : "Digite sua dúvida";
 
   const sortedAutoReplies = useMemo(
     () =>
@@ -66,6 +114,12 @@ const ChatWidget = () => {
     };
 
     const storedSession = getStoredChatSession();
+    const storedVisitor = getStoredVisitor();
+    if (storedVisitor.name || storedVisitor.email) {
+      setVisitor(storedVisitor);
+      setHasIntroduced(true);
+    }
+
     if (storedSession) {
       setSessionId(storedSession.id);
       setSessionToken(storedSession.token);
@@ -166,6 +220,19 @@ const ChatWidget = () => {
     ]);
   };
 
+  const addLocalMessage = (senderType: ChatMessage["sender_type"], body: string) => {
+    setMessages((current) => [
+      ...current,
+      {
+        id: crypto.randomUUID(),
+        session_id: sessionId || "intro",
+        sender_type: senderType,
+        body,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+  };
+
   const handleSendMessage = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!message.trim() || isSending) return;
@@ -173,13 +240,38 @@ const ChatWidget = () => {
     setIsSending(true);
 
     try {
+      const visitorMessage = message.trim();
+      setMessage("");
+      setHasIntroduced(true);
+
+      if (chatStep === "name") {
+        const nextVisitor = { ...visitor, name: visitorMessage };
+        setVisitor(nextVisitor);
+        saveStoredVisitor(nextVisitor);
+        addLocalMessage("visitor", visitorMessage);
+        addLocalMessage(
+          "bot",
+          `Prazer, ${visitorMessage}. Qual é o seu melhor e-mail para contato?`,
+        );
+        return;
+      }
+
+      if (chatStep === "email") {
+        const nextVisitor = { ...visitor, email: visitorMessage };
+        setVisitor(nextVisitor);
+        saveStoredVisitor(nextVisitor);
+        addLocalMessage("visitor", visitorMessage);
+        addLocalMessage(
+          "bot",
+          "Obrigado. Agora pode enviar sua dúvida sobre a Pilares.",
+        );
+        return;
+      }
+
       const activeSession =
         sessionId && sessionToken
           ? { id: sessionId, token: sessionToken }
           : await createSession();
-
-      const visitorMessage = message.trim();
-      setMessage("");
 
       await insertMessage(
         activeSession.id,
@@ -228,41 +320,8 @@ const ChatWidget = () => {
             </button>
           </header>
 
-          {!hasStarted && (
-            <div className="chat-widget__visitor">
-              <input
-                placeholder="Seu nome"
-                value={visitor.name}
-                onChange={(event) =>
-                  setVisitor((current) => ({
-                    ...current,
-                    name: event.target.value,
-                  }))
-                }
-              />
-              <input
-                placeholder="Seu e-mail"
-                type="email"
-                value={visitor.email}
-                onChange={(event) =>
-                  setVisitor((current) => ({
-                    ...current,
-                    email: event.target.value,
-                  }))
-                }
-              />
-            </div>
-          )}
-
           <div className="chat-widget__messages">
-            {messages.length === 0 && (
-              <p>
-                Envie sua dúvida sobre módulos, implantação ou atendimento. Se
-                houver uma resposta cadastrada, ela aparece automaticamente.
-              </p>
-            )}
-
-            {messages.map((item) => (
+            {visibleMessages.map((item) => (
               <div
                 className={`chat-widget__message chat-widget__message--${item.sender_type}`}
                 key={item.id}
@@ -275,7 +334,8 @@ const ChatWidget = () => {
 
           <form onSubmit={handleSendMessage}>
             <input
-              placeholder="Digite sua dúvida"
+              placeholder={inputPlaceholder}
+              type={chatStep === "email" ? "email" : "text"}
               value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
