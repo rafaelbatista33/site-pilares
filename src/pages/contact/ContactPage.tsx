@@ -1,5 +1,6 @@
 // src/pages/contact/ContactPage.tsx
 import React, { useEffect, useState } from "react";
+import { createEmailContact } from "../../lib/supabase";
 
 type WindowWithAOS = Window & {
   AOS?: {
@@ -28,20 +29,36 @@ const ContactPage: React.FC = () => {
       const form = event.currentTarget;
       const formData = new FormData(form);
 
-      const response = await fetch("https://formspree.io/f/xqawkeoj", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
+      const firstName = String(formData.get("firstName") ?? "").trim();
+      const lastName = String(formData.get("lastName") ?? "").trim();
+      const email = String(formData.get("email") ?? "").trim();
+      const phone = String(formData.get("phone") ?? "").trim();
+      const company = String(formData.get("company") ?? "").trim();
+      const country = String(formData.get("country") ?? "").trim();
+      const teamSize = String(formData.get("teamSize") ?? "").trim();
+      const need = String(formData.get("need") ?? "").trim();
+
+      await createEmailContact({
+        name: [firstName, lastName].filter(Boolean).join(" "),
+        email,
+        phone,
+        source: "contact_page",
+        company,
+        country,
+        team_size: teamSize,
+        message: need,
+        notes: [
+          company && `Órgão/instituição: ${company}`,
+          country && `País/Cidade: ${country}`,
+          teamSize && `Equipe de manutenção: ${teamSize}`,
+          need && `Necessidade: ${need}`,
+        ]
+          .filter(Boolean)
+          .join("\n"),
       });
 
-      if (response.ok) {
-        form.reset();
-        setShowSuccessModal(true);
-      } else {
-        alert("Não foi possível enviar. Tente novamente em instantes.");
-      }
+      form.reset();
+      setShowSuccessModal(true);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert(

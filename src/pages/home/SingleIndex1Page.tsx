@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useI18n } from "../../i18n/I18nProvider";
 import LanguageSelect from "../../components/LanguageSelect";
 import { Link } from "react-router-dom";
+import { createEmailContact } from "../../lib/supabase";
 
 type WindowWithAOS = Window & {
   AOS?: {
@@ -25,20 +26,36 @@ export const SingleIndex1Page: React.FC = () => {
       const form = event.currentTarget;
       const formData = new FormData(form);
 
-      const response = await fetch("https://formspree.io/f/xqawkeoj", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
+      const firstName = String(formData.get("firstName") ?? "").trim();
+      const lastName = String(formData.get("lastName") ?? "").trim();
+      const email = String(formData.get("email") ?? "").trim();
+      const phone = String(formData.get("phone") ?? "").trim();
+      const company = String(formData.get("company") ?? "").trim();
+      const role = String(formData.get("role") ?? "").trim();
+      const teamSize = String(formData.get("teamSize") ?? "").trim();
+      const need = String(formData.get("need") ?? "").trim();
+
+      await createEmailContact({
+        name: [firstName, lastName].filter(Boolean).join(" "),
+        email,
+        phone,
+        source: "home_page",
+        company,
+        role,
+        team_size: teamSize,
+        message: need,
+        notes: [
+          company && `Empresa/órgão: ${company}`,
+          role && `Cargo: ${role}`,
+          teamSize && `Equipe: ${teamSize}`,
+          need && `Mensagem: ${need}`,
+        ]
+          .filter(Boolean)
+          .join("\n"),
       });
 
-      if (response.ok) {
-        form.reset();
-        setShowSuccessModal(true);
-      } else {
-        alert("Não foi possível enviar. Tente novamente em instantes.");
-      }
+      form.reset();
+      setShowSuccessModal(true);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert(
@@ -834,6 +851,7 @@ export const SingleIndex1Page: React.FC = () => {
                       type="email"
                       name="email"
                       placeholder={t("form.email")}
+                      required
                     />
                   </div>
                   <div className="input-row">

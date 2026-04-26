@@ -47,7 +47,11 @@ export const FooterTop = styled.div`
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      background: linear-gradient(135deg, #6534f4, #8f00ff);
+      background: linear-gradient(
+        135deg,
+        ${({ theme }) => theme.colors.primary},
+        ${({ theme }) => theme.colors.primaryAlt}
+      );
       font-size: 0.9rem;
       font-weight: 500;
       white-space: nowrap;

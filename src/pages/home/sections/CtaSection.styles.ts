@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 export const CtaWrapper = styled.section`
   padding: 80px 0;
-  background: radial-gradient(circle at bottom, #6534f4 0, #050a1f 60%);
+  background: radial-gradient(
+    circle at bottom,
+    ${({ theme }) => theme.colors.primary} 0,
+    #050a1f 60%
+  );
 `;
 
 export const CtaGrid = styled.div`
@@ -43,7 +47,11 @@ export const CtaText = styled.div`
     display: inline-flex;
     padding: 10px 20px;
     border-radius: 999px;
-    background: linear-gradient(135deg, #6534f4, #8f00ff);
+    background: linear-gradient(
+      135deg,
+      ${({ theme }) => theme.colors.primary},
+      ${({ theme }) => theme.colors.primaryAlt}
+    );
     font-size: 0.9rem;
     font-weight: 500;
   }

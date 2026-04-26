@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 export const HeroWrapper = styled.section`
   padding: 120px 0 80px;
-  background: radial-gradient(circle at top, #6534f4 0, #050a1f 55%);
+  background: radial-gradient(
+    circle at top,
+    ${({ theme }) => theme.colors.primary} 0,
+    #050a1f 55%
+  );
 `;
 
 export const HeroGrid = styled.div`
@@ -91,7 +95,11 @@ export const HeroButtons = styled.div`
   .primary {
     padding: 10px 20px;
     border-radius: 999px;
-    background: linear-gradient(135deg, #6534f4, #8f00ff);
+    background: linear-gradient(
+      135deg,
+      ${({ theme }) => theme.colors.primary},
+      ${({ theme }) => theme.colors.primaryAlt}
+    );
     font-size: 0.9rem;
     font-weight: 500;
   }

@@ -4,12 +4,12 @@
   --brand-100: #dbeafe;
   --brand-200: #bfdbfe;
   --brand-300: #93c5fd;
-  --brand-400: #60a5fa;
-  --brand-500: #3b82f6; /* primária */
-  --brand-600: #2563eb; /* primária (hover) */
-  --brand-700: #1d4ed8;
-  --brand-800: #1e40af;
-  --brand-900: #1e3a8a;
+  --brand-400: #3f7fd6;
+  --brand-500: #185abc; /* primária */
+  --brand-600: #124ba1; /* primária (hover) */
+  --brand-700: #0f3f88;
+  --brand-800: #0b2f6b;
+  --brand-900: #071832;
 
   --accent-cyan: #0ea5e9; /* toques ciano */
   --txt-on-dark: #ffffff;
@@ -110,8 +110,8 @@ body {
 
 /* hover no mobile também (vale pra telas grandes se o menu abrir) */
 .mobile-sidebar .mobile-button .header-btn23:hover {
-  background: #f3ecff;
-  color: #4b2ac7;
+  background: #eaf3ff;
+  color: var(--brand-800);
 }
 
 /* estilo padrão do select de idioma */
@@ -168,7 +168,7 @@ body {
 .header-area6 .header2-buttons .header-btn23:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-  background: #f3ecff;
+  background: #eaf3ff;
   color: #ffffffff;
 }
 
@@ -215,11 +215,11 @@ body {
 /* HOVER – desktop */
 .btn-contact-cta:hover {
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(143, 0, 255, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(24, 90, 188, 0.55);
 }
 
 .btn-contact-cta:hover {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(37, 99, 235, 0.45) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 24px rgba(24, 90, 188, 0.45) !important;
 }
 
 .btn-contact-cta:hover::before {
@@ -251,7 +251,7 @@ body {
   margin: 0 8px;
   font-size: 16px;
   padding: 3px 20px 3px 8px;
-} /* HEADER MOBILE ROXO */
+} /* HEADER MOBILE AZUL */
 .mobile-header-6 {
   background: var(--brand-gradient);
 }
@@ -278,7 +278,7 @@ body {
   border-radius: 999px;
 
   background: #ffffff;
-  color: #6534f4;
+  color: var(--brand-500);
 
   font-size: 16px; /* TEXTO MAIOR */
   font-weight: 500;
@@ -293,8 +293,8 @@ body {
 
   background-image: linear-gradient(
     135deg,
-    rgba(101, 52, 244, 0.08),
-    rgba(143, 0, 255, 0.12)
+    rgba(24, 90, 188, 0.08),
+    rgba(11, 47, 107, 0.12)
   );
   background-clip: padding-box;
 }
@@ -455,7 +455,7 @@ body {
   max-width: 360px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(143, 0, 255, 0.7);
+  border: 1px solid rgba(24, 90, 188, 0.7);
   text-align: center;
   animation: form-scale 0.2s ease-out;
 }
@@ -541,8 +541,8 @@ body {
 .contact-page {
   background: radial-gradient(
     circle at top,
-    #1d0b5c 0,
-    #020517 55%,
+    #0b2f6b 0,
+    #071832 55%,
     #020313 100%
   );
   color: #ffffff;
@@ -554,8 +554,8 @@ body {
   color: #ffffff;
   background-image: linear-gradient(
       135deg,
-      rgba(37, 99, 235, 0.94),
-      rgba(30, 64, 175, 0.98)
+      rgba(24, 90, 188, 0.94),
+      rgba(11, 47, 107, 0.98)
     ),
     uurl("/img/bg/hero6-bg.png") !important;
   background-size: cover;
@@ -587,16 +587,16 @@ body {
 .contact-page {
   background: radial-gradient(
     circle at top,
-    #1d0b5c 0,
-    #020517 55%,
+    #0b2f6b 0,
+    #071832 55%,
     #020313 100%
   );
   color: #ffffff;
 }
 
-/* hero roxo com estilo parecido com outras seções */
+/* hero azul com estilo parecido com outras seções */
 .contact-hero {
-  background: linear-gradient(135deg, #6534f4, #8f00ff);
+  background: var(--brand-gradient);
   color: #ffffff;
 }
 
@@ -615,7 +615,7 @@ body {
   border-radius: 18px;
   padding: 22px 20px;
   margin-bottom: 24px;
-  border: 1px solid rgba(37, 99, 235, 0.5) !important; /* azul 600 */
+  border: 1px solid rgba(24, 90, 188, 0.5) !important;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
 }
 
@@ -702,7 +702,7 @@ body {
 
 /* Telegram azul */
 .contact-btn--telegram {
-  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  background: linear-gradient(135deg, var(--accent-cyan), var(--brand-500));
 }
 
 
@@ -726,8 +726,8 @@ body {
   .contact-page {
     background: radial-gradient(
       circle at top,
-      #1d0b5c 0,
-      #020517 55%,
+      #0b2f6b 0,
+      #071832 55%,
       #020313 100%
     );
   }
@@ -816,7 +816,7 @@ body {
 .btn-contact-cta {
   background: var(--brand-gradient) !important;
   border-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 18px rgba(37, 99, 235, 0.35) !important; /* azul 600 */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 18px rgba(24, 90, 188, 0.35) !important;
 }
 
 /* FAQ (Sobre) - manter legibilidade dos textos */

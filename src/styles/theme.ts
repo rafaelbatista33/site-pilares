@@ -1,8 +1,8 @@
 // src/styles/theme.ts
 export const theme = {
   colors: {
-    primary: "#6534F4",
-    primaryAlt: "#8F00FF",
+    primary: "#185ABC",
+    primaryAlt: "#0B2F6B",
     bg: "#050A1F",
     bgSoft: "#05081C",
     textLight: "#FFFFFF",
