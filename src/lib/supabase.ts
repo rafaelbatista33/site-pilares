@@ -138,29 +138,67 @@ export const createEmailContact = async (payload: {
   team_size?: string;
   message?: string;
 }) => {
-  return supabaseRest<null>("email_contacts", {
-    method: "POST",
-    body: {
-      name: payload.name || null,
-      email: payload.email,
-      phone: payload.phone || null,
-      source: payload.source,
-      notes: payload.notes || null,
-      company: payload.company || null,
-      role: payload.role || null,
-      city: payload.city || null,
-      uf: payload.uf || null,
-      entity_type: payload.entity_type || null,
-      country: payload.country || null,
-      team_size: payload.team_size || null,
-      message: payload.message || null,
-      page_url:
-        typeof window !== "undefined" ? window.location.href : null,
-      user_agent:
-        typeof navigator !== "undefined" ? navigator.userAgent : null,
-      status: "new",
-    },
-  });
+  const pageUrl = typeof window !== "undefined" ? window.location.href : "";
+  const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
+
+  const structuredBody = {
+    name: payload.name || null,
+    email: payload.email,
+    phone: payload.phone || null,
+    source: payload.source,
+    notes: payload.notes || null,
+    company: payload.company || null,
+    role: payload.role || null,
+    city: payload.city || null,
+    uf: payload.uf || null,
+    entity_type: payload.entity_type || null,
+    country: payload.country || null,
+    team_size: payload.team_size || null,
+    message: payload.message || null,
+    page_url: pageUrl || null,
+    user_agent: userAgent || null,
+    status: "new",
+  };
+
+  try {
+    return await supabaseRest<null>("email_contacts", {
+      method: "POST",
+      body: structuredBody,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    if (!message.includes("PGRST204")) {
+      throw error;
+    }
+
+    const fallbackNotes = [
+      payload.notes,
+      payload.company && `Órgão/empresa: ${payload.company}`,
+      payload.role && `Cargo: ${payload.role}`,
+      payload.city && `Cidade: ${payload.city}`,
+      payload.uf && `UF: ${payload.uf}`,
+      payload.entity_type && `Entidade: ${payload.entity_type}`,
+      payload.country && `País: ${payload.country}`,
+      payload.team_size && `Equipe: ${payload.team_size}`,
+      payload.message && `Mensagem: ${payload.message}`,
+      pageUrl && `Página: ${pageUrl}`,
+      userAgent && `User agent: ${userAgent}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    return supabaseRest<null>("email_contacts", {
+      method: "POST",
+      body: {
+        name: payload.name || null,
+        email: payload.email,
+        phone: payload.phone || null,
+        source: payload.source,
+        notes: fallbackNotes || null,
+        status: "new",
+      },
+    });
+  }
 };
 
 export const verifyAdminAccess = async (session: SupabaseSession) => {

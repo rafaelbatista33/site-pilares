@@ -112,8 +112,7 @@ const AdminPage = () => {
       await Promise.all([
         supabaseRest<EmailContact[]>("email_contacts", {
           token,
-          query:
-            "?select=id,name,email,phone,source,status,notes,company,role,city,uf,entity_type,country,team_size,message,page_url,user_agent,created_at&order=created_at.desc&limit=120",
+          query: "?select=*&order=created_at.desc&limit=120",
         }),
         supabaseRest<EmailTemplate[]>("email_templates", {
           token,
@@ -200,8 +199,7 @@ const AdminPage = () => {
       const [loadedContacts, loadedChats] = await Promise.all([
         supabaseRest<EmailContact[]>("email_contacts", {
           token: session.access_token,
-          query:
-            "?select=id,name,email,phone,source,status,notes,company,role,city,uf,entity_type,country,team_size,message,page_url,user_agent,created_at&order=created_at.desc&limit=120",
+          query: "?select=*&order=created_at.desc&limit=120",
         }),
         supabaseRest<ChatSession[]>("chat_sessions", {
           token: session.access_token,
