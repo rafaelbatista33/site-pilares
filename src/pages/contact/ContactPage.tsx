@@ -34,9 +34,15 @@ const ContactPage: React.FC = () => {
       const email = String(formData.get("email") ?? "").trim();
       const phone = String(formData.get("phone") ?? "").trim();
       const company = String(formData.get("company") ?? "").trim();
+      const role = String(formData.get("role") ?? "").trim();
       const country = String(formData.get("country") ?? "").trim();
       const teamSize = String(formData.get("teamSize") ?? "").trim();
       const need = String(formData.get("need") ?? "").trim();
+
+      if (!email || !phone) {
+        alert("Informe e-mail e telefone para que possamos retornar.");
+        return;
+      }
 
       await createEmailContact({
         name: [firstName, lastName].filter(Boolean).join(" "),
@@ -44,11 +50,14 @@ const ContactPage: React.FC = () => {
         phone,
         source: "contact_page",
         company,
+        role,
         country,
         team_size: teamSize,
         message: need,
         notes: [
+          phone && `WhatsApp: ${phone}`,
           company && `Órgão/instituição: ${company}`,
+          role && `Cargo/função: ${role}`,
           country && `País/Cidade: ${country}`,
           teamSize && `Equipe de manutenção: ${teamSize}`,
           need && `Necessidade: ${need}`,
@@ -209,7 +218,12 @@ const ContactPage: React.FC = () => {
                   />
 
                   <div className="input-row">
-                    <input type="text" name="firstName" placeholder="Nome" />
+                    <input
+                      type="text"
+                      name="firstName"
+                      placeholder="Nome"
+                      required
+                    />
                     <input
                       type="text"
                       name="lastName"
@@ -228,6 +242,7 @@ const ContactPage: React.FC = () => {
                       type="tel"
                       name="phone"
                       placeholder="WhatsApp (com DDI/DDD)"
+                      required
                     />
                   </div>
 
@@ -237,6 +252,14 @@ const ContactPage: React.FC = () => {
                       name="company"
                       placeholder="Nome do órgão / instituição"
                     />
+                    <input
+                      type="text"
+                      name="role"
+                      placeholder="Cargo / função"
+                    />
+                  </div>
+
+                  <div className="input-row">
                     <input
                       type="text"
                       name="country"

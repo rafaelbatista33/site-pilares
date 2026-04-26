@@ -35,6 +35,11 @@ export const SingleIndex1Page: React.FC = () => {
       const teamSize = String(formData.get("teamSize") ?? "").trim();
       const need = String(formData.get("need") ?? "").trim();
 
+      if (!email || !phone) {
+        alert("Informe e-mail e telefone para que possamos retornar.");
+        return;
+      }
+
       await createEmailContact({
         name: [firstName, lastName].filter(Boolean).join(" "),
         email,
@@ -45,6 +50,7 @@ export const SingleIndex1Page: React.FC = () => {
         team_size: teamSize,
         message: need,
         notes: [
+          phone && `WhatsApp: ${phone}`,
           company && `Empresa/órgão: ${company}`,
           role && `Cargo: ${role}`,
           teamSize && `Equipe: ${teamSize}`,
@@ -834,6 +840,7 @@ export const SingleIndex1Page: React.FC = () => {
                       type="text"
                       name="firstName"
                       placeholder={t("form.firstName")}
+                      required
                     />
                     <input
                       type="text"
@@ -846,6 +853,7 @@ export const SingleIndex1Page: React.FC = () => {
                       type="tel"
                       name="phone"
                       placeholder={t("form.phone")}
+                      required
                     />
                     <input
                       type="email"

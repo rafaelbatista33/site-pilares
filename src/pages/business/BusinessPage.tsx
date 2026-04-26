@@ -302,6 +302,7 @@ const BusinessPage = () => {
         email,
         phone: telefone,
         source: "business_page",
+        company: entidade,
         city: cidade,
         uf,
         entity_type: entidade,
